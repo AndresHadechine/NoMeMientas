@@ -10,7 +10,7 @@ public class GameFinishedWithWinner extends DomainEvent {
     private final PlayerId playerId;
 
     public GameFinishedWithWinner(PlayerId playerId, Name namePlayer ) {
-        super("nomemientan.juego.finalizadoconganador");
+        super("nomemientan.game.finishedwithwinner");
         this.namePlayer = namePlayer;
         this.playerId = playerId;
     }

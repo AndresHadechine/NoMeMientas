@@ -11,7 +11,7 @@ public class BetMadeWithAGuess extends DomainEvent {
     private final Riddle riddle;
 
     public BetMadeWithAGuess(PlayerId playerId, Bet bet, Riddle riddle) {
-        super("nomemientas.juego.apuestahechaconadivinanza");
+        super("nomemientas.game.betmadewithaguess");
         this.playerId = playerId;
         this.bet = bet;
         this.riddle = riddle;

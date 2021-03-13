@@ -7,6 +7,6 @@ import java.util.UUID;
 public class GameStarted extends DomainEvent {
 
     public GameStarted() {
-        super("nomemientas.juego.iniciado");
+        super("nomemientas.game.started");
     }
 }

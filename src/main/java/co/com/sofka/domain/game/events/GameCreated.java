@@ -10,7 +10,7 @@ public class GameCreated extends DomainEvent {
     private final Map<PlayerId, Player> players;
 
     public GameCreated(Map<PlayerId, Player> players) {
-        super("nomemientas.juego.creado");
+        super("nomemientas.game.created");
         this.players = players;
     }
 

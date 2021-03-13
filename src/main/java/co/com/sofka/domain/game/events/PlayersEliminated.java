@@ -10,7 +10,7 @@ public class PlayersEliminated extends DomainEvent {
     private final Set<PlayerId> playersIds;
 
     public PlayersEliminated(Set<PlayerId> playersIds) {
-        super("nomemientan.juego.jugadoreseliminados");
+        super("nomemientan.game.playersEliminated");
         this.playersIds = playersIds;
     }
 

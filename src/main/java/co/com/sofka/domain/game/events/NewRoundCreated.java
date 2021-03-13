@@ -11,7 +11,7 @@ public class NewRoundCreated extends DomainEvent {
     private final RoundId roundId;
 
     public NewRoundCreated(RoundId roundId, Set<PlayerId> playersIds) {
-        super("nomemientan.juego.creada");
+        super("nomemientan.game.roundCreated");
         this.playersIds = playersIds;
         this.roundId = roundId;
     }

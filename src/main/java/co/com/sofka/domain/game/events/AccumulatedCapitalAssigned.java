@@ -8,7 +8,7 @@ public class AccumulatedCapitalAssigned extends DomainEvent {
     private final Integer value;
 
     public AccumulatedCapitalAssigned(PlayerId playerId, Integer value) {
-        super("nomemientas.juego.acumuladoacapitalasignado");
+        super("nomemientas.game.accumulatedcapitalassigned");
         this.playerId = playerId;
         this.value = value;
     }
