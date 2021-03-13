@@ -1,9 +1,7 @@
 package co.com.sofka.domain.game;
 
-import co.com.sofka.domain.game.values.Bet;
-import co.com.sofka.domain.game.values.GameId;
-import co.com.sofka.domain.game.values.PlayerId;
-import co.com.sofka.domain.game.values.RoundId;
+import co.com.sofka.domain.game.events.*;
+import co.com.sofka.domain.game.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
@@ -29,29 +27,31 @@ public class Game extends AggregateEvent<GameId> {
         return game;
     }
     public void startGame(){
-        appendChange(new JuegoIniciado()).apply();
+        appendChange(new GameStarted()).apply();
     }
     //crearNuevaRonda
     public void createNewRound(){
-        var PlayersIds = players.keySet();
+        var playersIds = players.keySet();
         var newRoundId = new RoundId();
-        appendChange(new NuevaRondaCreada(newRoundId, PlayersIds)).apply();
+        appendChange(new NewRoundCreated(newRoundId, playersIds)).apply();
     }
     //eliminarJugadoresDeRonda
-    public void eliminarJugadoresDeRonda(Set<PlayerId> PlayersIds){
-        appendChange(new JugadoresEliminados(PlayersIds)).apply();
+    public void eliminarJugadoresDeRonda(Set<PlayerId> playersIds){
+        appendChange(new PlayersEliminated(playersIds)).apply();
     }
     //asignarAcumuladoACapital
-    public void assignAccumulatedCapital(Set<PlayerId> PlayersIds){
-        appendChange(new JugadoresEliminados(PlayersIds)).apply();
+    public void assignAccumulatedCapital(Set<PlayerId> playersIds){
+        appendChange(new PlayersEliminated(playersIds)).apply();
     }
     //asignarAcumuladoACapital
     public void assignAccumulatedCapital(PlayerId playerId, Integer value){
         Objects.requireNonNull(value);
-        appendChange(new AcumuladoACapitalAsignado(playerId, value)).apply();
+        appendChange(new AccumulatedCapitalAssigned(playerId, value)).apply();
     }
-    public void makeBetWithRiddle(PlayerId playerId, Bet bet, Adivinanza adivinanza){
-        appendChange(new ApuestaHechaConAdivinanza(playerId, apusta, adivinanza)).apply();
+    //hacerApuestaConAdivinanza
+    public void makeBetWithRiddle(PlayerId playerId, Bet bet, Riddle riddle){
+        //ApuestaHechaConAdivinaza
+        appendChange(new BetMadeWithAGuess(playerId, bet, riddle)).apply();
     }
 
     public RoundId roundId() {
