@@ -1,18 +1,17 @@
 package co.com.sofka.domain.game.command;
 
-import co.com.sofka.domain.game.Player;
+
+import co.com.sofka.domain.game.values.GameId;
 import co.com.sofka.domain.generic.Command;
 
-import java.util.Set;
-
 public class StartGame implements Command {
-    private final Set<Player> players;
+    private final GameId gameId;
 
-    public StartGame(Set<Player> players) {
-        this.players = players;
+    public StartGame(GameId gameId) {
+        this.gameId = gameId;
     }
 
-    public Set<Player> getPlayers() {
-        return players;
+    public GameId getGameId() {
+        return gameId;
     }
 }

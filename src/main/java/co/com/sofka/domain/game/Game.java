@@ -5,10 +5,7 @@ import co.com.sofka.domain.game.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Game extends AggregateEvent<GameId> {
 
@@ -17,15 +14,24 @@ public class Game extends AggregateEvent<GameId> {
     protected Boolean gameStarted;
     protected Boolean hasWinner;
 
+
+    public Game(GameId entityId, Set<Player> players){
+        super(entityId);
+        Map<PlayerId, Player> newPlayers = new HashMap<>();
+        players.forEach(player -> newPlayers.put(player.identity(), player));
+        appendChange(new GameCreated(newPlayers)).apply();
+    }
     public Game(GameId entityId) {
         super(entityId);
         subscribe(new GameChange(this));
     }
+
     public static Game from(GameId entityId, List<DomainEvent> events){
-        var game = new Game(entityId);
-        events.forEach(game::applyEvent);
-        return game;
+        var juego = new Game(entityId);
+        events.forEach(juego::applyEvent);
+        return juego;
     }
+
     public void startGame(){
         appendChange(new GameStarted()).apply();
     }
